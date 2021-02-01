@@ -12,7 +12,7 @@ class ImageAdapter : ListAdapter<Image, ImageItemVH>(Image.DiffUtils) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageItemVH {
         val inflater = LayoutInflater.from(parent.context)
-        return ImageItemVH(inflater)
+        return ImageItemVH(inflater, parent, false)
     }
 
     override fun onBindViewHolder(holder: ImageItemVH, position: Int) {
@@ -24,8 +24,8 @@ class ImageAdapter : ListAdapter<Image, ImageItemVH>(Image.DiffUtils) {
 
         constructor(
             inflater: LayoutInflater,
-            parent: ViewGroup? = null,
-            attachToRoot: Boolean = false
+            parent: ViewGroup?,
+            attachToRoot: Boolean,
         ) : this(ItemRecyclerImageBinding.inflate(inflater, parent, attachToRoot))
 
         fun bind(item: Image) = with(binding) {

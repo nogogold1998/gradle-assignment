@@ -5,4 +5,5 @@
     <string name="home_holder_number_images">0</string>
     <string name="error_read_external_permission_not_granted">App cannot read external files because asked permission was not granted. Please enable it in app\'s setting</string>
     <string name="msg_read_external_permission_required">App requires Read external file permission to read external files</string>
+    <string name="format_percent_decimal">%1$3d %%</string>
 </resources>

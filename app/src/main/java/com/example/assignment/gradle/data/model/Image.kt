@@ -1,10 +1,16 @@
 package com.example.assignment.gradle.data.model
 
 import android.graphics.Bitmap
-import android.net.Uri
 import androidx.recyclerview.widget.DiffUtil
 
-data class Image(val id: Long, val displayName: String, val uri: Uri, val bitmap: Bitmap) {
+data class Image(
+    val id: Long, val displayName: String,
+    @Deprecated(
+        "By directly storing a bitmap object may lead to OutOfMemory, if you contains them in" +
+            " a large collection. Please consider using 3rd-party image loading library"
+    )
+    val bitmap: Bitmap? = null
+) {
 
     companion object {
         val DiffUtils by lazy {

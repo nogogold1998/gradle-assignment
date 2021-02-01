@@ -1,10 +1,13 @@
 package com.example.assignment.gradle.util
 
-import android.content.ContentResolver
-import com.example.assignment.gradle.data.repo.LocalImageRepository
+import android.content.Context
+import com.example.assignment.gradle.data.repo.ImageRepositoryImpl
 import com.example.assignment.gradle.data.repo.LocalImageRepositoryImpl
 
 internal object Injector {
-    fun getLocalImageRepo(resolver: ContentResolver): LocalImageRepository =
-        LocalImageRepositoryImpl.getInstance(resolver)
+    internal fun getLocalImageRepo(context: Context) =
+        LocalImageRepositoryImpl.getInstance(context)
+
+    internal fun getImageRepository(context: Context) =
+        ImageRepositoryImpl.getInstance(getLocalImageRepo(context))
 }
