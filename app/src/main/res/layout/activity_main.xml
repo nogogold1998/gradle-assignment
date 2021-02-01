@@ -4,17 +4,4 @@
     android:id="@+id/fragmentContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
-
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/imageMain"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:src="@tools:sample/backgrounds/scenic" />
-
-    <Button
-        android:id="@+id/buttonMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name" />
-</FrameLayout>
+    tools:context=".ui.main.MainActivity" />
