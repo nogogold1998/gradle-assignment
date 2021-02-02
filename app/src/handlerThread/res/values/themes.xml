@@ -2,12 +2,12 @@
 <resources>
 
     <style name="Style.GradleAssignment.Text" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Style.GradleAssignment.EditText" parent="Widget.AppCompat.EditText">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 </resources>
