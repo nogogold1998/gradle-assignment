@@ -69,8 +69,6 @@ dependencies {
 //    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 //    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
-    coroutinesImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
     testImplementation "junit:junit:$junit_version"
 
     androidTestImplementation "androidx.test.ext:junit:$androidx_ext_junit_version"
