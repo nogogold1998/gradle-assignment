@@ -39,7 +39,7 @@ class HomeViewModel(private val imageRepo: ImageRepository) : BaseHomeViewModel(
     class Factory : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return HomeViewModel(Injector.getImageRepository()) as T
+            return HomeViewModel(Injector.imageRepository) as T
         }
     }
 }

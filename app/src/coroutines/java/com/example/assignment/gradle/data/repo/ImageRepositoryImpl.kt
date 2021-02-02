@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
-class ImageRepositoryImpl private constructor(
+class ImageRepositoryImpl(
     private val localImageRepo: LocalImageRepository,
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ImageRepository, CoroutineScope {
@@ -50,15 +50,6 @@ class ImageRepositoryImpl private constructor(
                 images += localImageRepo.extractImage(cursor)
                 _images.send(images)
             } while (cursor.moveToNext())
-        }
-    }
-
-    companion object {
-        private var instance: ImageRepositoryImpl? = null
-        fun getInstance(
-            localImageRepo: LocalImageRepository,
-        ): ImageRepository = instance ?: synchronized(this) {
-            instance ?: ImageRepositoryImpl(localImageRepo).also { instance = it }
         }
     }
 }

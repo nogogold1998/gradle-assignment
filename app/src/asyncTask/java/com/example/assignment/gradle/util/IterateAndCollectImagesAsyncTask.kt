@@ -24,15 +24,15 @@ class IterateAndCollectImagesAsyncTask(
 
     override fun doInBackground(vararg params: Cursor?) {
         check(params.size == 1)
-        val cursor by WeekRefDelegate(checkNotNull(params[0]))
-        collectNumOfImages.let { cursor?.count?.let(it) }
-        cursor?.moveToFirst()
+        val cursor = checkNotNull(params[0])
+        collectNumOfImages.let { cursor.count.let(it) }
+        cursor.moveToFirst()
         do {
-            cursor?.let {
+            cursor.let {
                 images.add(transform.invoke(it))
                 publishProgress(Unit)
             }
-        } while (cursor?.moveToNext() == true && !isCancelled)
+        } while (cursor.moveToNext() && !isCancelled)
     }
 
     override fun onProgressUpdate(vararg values: Unit?) {

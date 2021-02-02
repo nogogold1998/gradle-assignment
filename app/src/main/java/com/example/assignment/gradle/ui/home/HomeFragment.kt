@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private val homeVM: BaseHomeViewModel by viewModels { Injector.getHomeVMFactory() }
+    private val homeVM: BaseHomeViewModel by viewModels { Injector.homeVMFactory }
 
     private val adapter by lazy { ImageAdapter() }
 

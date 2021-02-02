@@ -3,7 +3,7 @@ package com.example.assignment.gradle.data.repo
 import com.example.assignment.gradle.data.model.Image
 import com.example.assignment.gradle.util.IterateAndCollectImagesAsyncTask
 
-class ImageRepositoryImpl private constructor(
+class ImageRepositoryImpl(
     private val localImageRepo: LocalImageRepository,
 ) : ImageRepository {
     private var task: IterateAndCollectImagesAsyncTask? = null
@@ -11,8 +11,7 @@ class ImageRepositoryImpl private constructor(
     override fun loadAllImages(
         collectImagesCount: (Int) -> Unit,
         collectImages: (List<Image>) -> Unit
-    ) {
-        val query = localImageRepo.queryAllLocalImages() ?: return
+    ) = localImageRepo.queryAllLocalImages()?.let { query ->
         val task = IterateAndCollectImagesAsyncTask(
             transform = localImageRepo::extractImage,
             collectImagesCount,
@@ -20,16 +19,10 @@ class ImageRepositoryImpl private constructor(
         ).also { task = it }
         task.execute(query)
     }
+        ?: collectImagesCount(0)
 
     override fun cancel() {
         task?.cancel()
-    }
-
-    companion object {
-        private var instance: ImageRepositoryImpl? = null
-        fun getInstance(localImageRepo: LocalImageRepository): ImageRepository =
-            instance ?: synchronized(this) {
-                instance ?: ImageRepositoryImpl(localImageRepo).also { instance = it }
-            }
+        task = null
     }
 }

@@ -34,7 +34,7 @@ android {
         }
     }
 
-    flavorDimensions "task"
+    flavorDimensions "task", "multiThreading"
     productFlavors {
         asyncTask {
             dimension "task"
@@ -47,6 +47,19 @@ android {
         coroutines {
             dimension "task"
             applicationIdSuffix ".coroutines"
+        }
+        callback {
+            dimension "multiThreading"
+        }
+        flow {
+            dimension "multiThreading"
+        }
+    }
+
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        if (!(names.contains("coroutines") ^ names.contains("callback"))) {
+            setIgnore true
         }
     }
 }

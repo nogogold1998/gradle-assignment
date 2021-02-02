@@ -2,7 +2,6 @@ package com.example.assignment.gradle.data.repo
 
 import android.content.ContentResolver
 import android.content.ContentUris
-import android.content.Context
 import android.database.Cursor
 import android.graphics.BitmapFactory
 import android.provider.MediaStore
@@ -10,7 +9,7 @@ import androidx.annotation.WorkerThread
 import com.example.assignment.gradle.data.model.Image
 import com.example.assignment.gradle.util.resizeTo
 
-internal class LocalImageRepositoryImpl private constructor(
+internal class LocalImageRepositoryImpl(
     private val resolver: ContentResolver,
 ) : LocalImageRepository {
     private val uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
@@ -46,13 +45,5 @@ internal class LocalImageRepositoryImpl private constructor(
         // val file = File(data).inputStream()
         // val bitmap = BitmapFactory.decodeStream(file)
         return Image(id, displayName, bitmap.resizeTo(100))
-    }
-
-    companion object {
-        private var instance: LocalImageRepositoryImpl? = null
-        internal fun getInstance(context: Context): LocalImageRepository =
-            instance ?: synchronized(this) {
-                instance ?: LocalImageRepositoryImpl(context.contentResolver).also { instance = it }
-            }
     }
 }
