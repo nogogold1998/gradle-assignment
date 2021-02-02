@@ -10,7 +10,7 @@ class IterateAndCollectImagesAsyncTask(
     private val transform: (row: Cursor) -> Image,
     private val collectNumOfImages: (fileCount: Int) -> Unit,
     private val collectImage: (images: List<Image>) -> Unit,
-) : AsyncTask<Cursor, Image, Unit>() {
+) : AsyncTask<Cursor, Unit, Unit>() {
 
     private val images = mutableListOf<Image>()
 
@@ -29,19 +29,14 @@ class IterateAndCollectImagesAsyncTask(
         cursor?.moveToFirst()
         do {
             cursor?.let {
-                val result = transform.invoke(it)
-                publishProgress(result)
+                images.add(transform.invoke(it))
+                publishProgress(Unit)
             }
         } while (cursor?.moveToNext() == true && !isCancelled)
     }
 
-    override fun onProgressUpdate(vararg values: Image?) {
+    override fun onProgressUpdate(vararg values: Unit?) {
         super.onProgressUpdate(*values)
-        values.asSequence()
-            .filterNotNull()
-            .forEach {
-                images.add(it)
-                collectImage.invoke(images)
-            }
+        collectImage.invoke(images)
     }
 }
