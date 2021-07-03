@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Style.GradleAssignment.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+    <style name="Style.GradleAssignment.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+</resources>
